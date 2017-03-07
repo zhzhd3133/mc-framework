@@ -8,6 +8,31 @@
     <artifactId>mmc-parent </artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <!-- ::::::::::::::::: 子模块version ::::::::::::-->
+        <mmc-core.version>1.0.0-RELEASE</mmc-core.version>
+        <mmc-web.version>1.0.0-RELEASE</mmc-web.version>
+
+        <!-- ::::::::::::::::: spring  version ::::::::::::-->
+        <spring.version>4.2.2.RELEASE</spring.version>
+
+
+        <!-- ::::::::::::::::: mybatis  version ::::::::::::-->
+        <mybatis.version>4.3.7.RELEASE</mybatis.version>
+        <mybatis-spring.version>4.3.7.RELEASE</mybatis-spring.version>
+
+        <!-- ::::::::::::::::: 单元测试 version ::::::::::::-->
+        <junit.version>3.8.1</junit.version>
+        <!-- ::::::::::::::::: JDBC数据源  version ::::::::::::-->
+        <db2-jdbc.version>9.7</db2-jdbc.version>
+        <oracle-jdbc.version>10.2.0.3</oracle-jdbc.version>
+        <mysql-jdbc.version>3.0.10</mysql-jdbc.version>
+
+        <logging.version>1.2</logging.version>
+
+    </properties>
+
     <modules>
         <module>mmc-web</module>
         <module>mmc-core</module>
