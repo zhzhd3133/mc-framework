@@ -20,7 +20,7 @@
         <mmc-web.version>1.0.0-RELEASE</mmc-web.version>
 
         <!-- ::::::::::::::::: spring  version ::::::::::::-->
-        <spring.version>4.2.2.RELEASE</spring.version>
+        <spring.version>4.3.0.RELEASE</spring.version>
 
 
         <!-- ::::::::::::::::: mybatis  version ::::::::::::-->
@@ -34,116 +34,158 @@
         <oracle-jdbc.version>10.2.0.3</oracle-jdbc.version>
         <mysql-jdbc.version>6.0.4</mysql-jdbc.version>
 
-        <!--::::::::::::::::::::common.logging日志 version:::::::::::::::::::::::::-->
-        <common.logging.version>1.2</common.logging.version>
+        <!--::::::::::::::::::::日志:::::::::::::::::::::::::-->
+        <slf4j.version>1.5.8</slf4j.version>
+        <logback.version>1.0.13</logback.version>
+
 
 
         <!--::::::::::::::::::::项目配置:::::::::::::::::::::::::-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
     </properties>
+    <!-- 预定义依赖项 -->
+    <dependencyManagement>
+        <dependencies>
+            <!--保证所有的Spring依赖（不管直接还是传递依赖）使用相同的版本
+                再需要指定<version>属性 -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--基础框架 spring core-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <scope>runtime</scope>
+                <!--去除commons-logging依赖 有SLF4J替代-->
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!--基础框架 spring basic module-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <scope>runtime</scope>
+            </dependency>
+
+            <!--基础框架 spring aop 支持-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <scope>runtime</scope>
+            </dependency>
+            <!--基础框架 spring jdbc/tx/orm-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+            </dependency>
+            <!--基础框架 spring WEB/WEBMVC支持-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+            </dependency>
+            <!--mybatis 支持-->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis-spring.version}</version>
+            </dependency>
+            <!--数据库驱动 oracle/db2/mysql-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-jdbc.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.oracle</groupId>
+                <artifactId>ojdbc14</artifactId>
+                <version>${oracle-jdbc.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!--:::::::::::::日志::::::::::::::::::-->
+
+            <!--日志 slf4j logging 框架-->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <!--日志 logback 框架-->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <!--日志 代码直接调用common-logging会被桥接到slf4j -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${slf4j.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <!--日志 代码直接调用log4j会被桥接到slf4j-->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>log4j-over-slf4j</artifactId>
+                <version>${slf4j.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <!--日志 代码直接调用java.util.logging会被桥接到slf4j -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jul-to-slf4j</artifactId>
+                <version>${slf4j.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+
+
+            <!--:::::::::::::系统测试  TEST ::::::::::::::::::-->
+            <!--spring test-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <!--预定义基础依赖项lib-->
     <dependencies>
-        <!--基础框架 spring core-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <!--基础框架 spring basic module-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-
-        <!--基础框架 spring aop 支持-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <!--基础框架 spring jdbc/tx/orm-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <!--基础框架 spring WEB/WEBMVC支持-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-
-        <!--mybatis 支持-->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>${mybatis.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>${mybatis-spring.version}</version>
-        </dependency>
-        <!--数据库驱动 oracle/db2/mysql-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql-jdbc.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc14</artifactId>
-            <version>${oracle-jdbc.version}</version>
-        </dependency>
-        <!--<dependency>
-            <groupId>com.ibm</groupId>
-            <artifactId>db2jcc</artifactId>
-            <version>${db2-jdbc.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ibm</groupId>
-            <artifactId>db2java</artifactId>
-            <version>${db2-jdbc.version}</version>
-        </dependency>-->
-
-        <!--:::::::::::::系统测试  TEST ::::::::::::::::::-->
-        <!--spring test-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${spring.version}</version>
-            <scope>test</scope>
-        </dependency>
         <!--junii 支持-->
         <dependency>
             <groupId>junit</groupId>

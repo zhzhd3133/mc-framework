@@ -1,4 +1,4 @@
-package spring.hello;
+package conf.spring.hello;
 
 /**
  * Created by master on 2017/3/9.

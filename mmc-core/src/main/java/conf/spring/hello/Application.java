@@ -1,4 +1,4 @@
-package spring.hello;
+package conf.spring.hello;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
