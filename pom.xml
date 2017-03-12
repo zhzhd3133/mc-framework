@@ -48,19 +48,19 @@
         <dependencies>
             <!--保证所有的Spring依赖（不管直接还是传递依赖）使用相同的版本
                 再需要指定<version>属性 -->
-            <dependency>
+           <!-- <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-framework-bom</artifactId>
                 <version>${spring.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
+            </dependency>-->
 
             <!--基础框架 spring core-->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
-                <scope>runtime</scope>
+                <version>${spring.version}</version>
                 <!--去除commons-logging依赖 有SLF4J替代-->
                 <exclusions>
                     <exclusion>
@@ -73,41 +73,51 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
-                <scope>runtime</scope>
+                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
-                <scope>runtime</scope>
+                <version>${spring.version}</version>
             </dependency>
 
             <!--基础框架 spring aop 支持-->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
-                <scope>runtime</scope>
+                <version>${spring.version}</version>
             </dependency>
             <!--基础框架 spring jdbc/tx/orm-->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jdbc</artifactId>
+                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-orm</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
+                <version>${spring.version}</version>
             </dependency>
             <!--基础框架 spring WEB/WEBMVC支持-->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
             </dependency>
             <!--mybatis 支持-->
             <dependency>
@@ -172,26 +182,29 @@
                 <scope>runtime</scope>
             </dependency>
 
-
-
             <!--:::::::::::::系统测试  TEST ::::::::::::::::::-->
             <!--spring test-->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <!--预定义基础依赖项lib-->
     <dependencies>
-        <!--junii 支持-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
         </dependency>
+
+
     </dependencies>
+
 </project>

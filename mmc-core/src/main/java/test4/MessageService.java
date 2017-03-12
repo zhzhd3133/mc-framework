@@ -1,4 +1,4 @@
-package conf.spring.hello;
+package test4;
 
 /**
  * Created by master on 2017/3/9.
