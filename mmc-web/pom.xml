@@ -3,9 +3,8 @@
     <parent>
         <artifactId>mmc-parent</artifactId>
         <groupId>com.zzd.mmc</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0-RELEASE</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
     <artifactId>mmc-web</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -15,9 +14,17 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.zzd.mmc</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>mmc-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${mmc-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
         </dependency>
     </dependencies>
 
