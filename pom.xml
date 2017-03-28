@@ -39,9 +39,19 @@
         <logback.version>1.0.13</logback.version>
 
 
+        <!--J2EE-->
+        <servlet-api.version>2.5</servlet-api.version>
+        <jsp.version>2.1</jsp.version>
+
+
+
+        <!---->
+        <compiler-plugin.version>3.1</compiler-plugin.version>
+
 
         <!--::::::::::::::::::::项目配置:::::::::::::::::::::::::-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jdk.version>1.7</jdk.version>
     </properties>
     <!-- 预定义依赖项 -->
     <dependencyManagement>
@@ -186,6 +196,16 @@
                 <version>${slf4j.version}</version>
                 <scope>runtime</scope>
             </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${servlet-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet.jsp</groupId>
+                <artifactId>jsp-api</artifactId>
+                <version>${jsp.version}</version>
+            </dependency>
 
             <!--:::::::::::::系统测试  TEST ::::::::::::::::::-->
             <!--spring test-->
@@ -208,8 +228,27 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
-
-
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compiler-plugin.version}</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <showWarnings>true</showWarnings>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+
+
+        </plugins>
+
+
+    </build>
 
 </project>
