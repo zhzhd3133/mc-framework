@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>mmc-web</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${mmc-web.version}</version>
     <packaging>war</packaging>
     <name>mmc-web 系统访问层页面</name>
     <url>http://www.mmc.com</url>
@@ -18,16 +18,7 @@
             <artifactId>mmc-core</artifactId>
             <version>${mmc-core.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
     </dependencies>
-
     <build>
         <finalName>mmc-web</finalName>
     </build>
