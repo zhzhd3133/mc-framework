@@ -5,7 +5,9 @@
 </head>
 <body>
     <h1>Master Manger Client</h1>
-    账号：<input type="text" value="" placeholder="请输入账号">
-    <input type="button" value="登录"/>
+        <form action="add">
+            账号：<input type="text" value="" placeholder="请输入账号">
+            <input type="submit" value="登录"/>
+        </form>
 </body>
 </html>
