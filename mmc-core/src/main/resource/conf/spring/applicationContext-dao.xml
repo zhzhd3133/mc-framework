@@ -3,8 +3,6 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
-
-
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/tx
@@ -14,6 +12,7 @@
        default-lazy-init="false">
     <description>JDBC，事物，AOP</description>
 
+
     <!--配置数据连接池-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <property name="jdbcUrl" value="${jdbc.mmc.url}"/>
@@ -21,14 +20,27 @@
         <property name="password" value="${jdbc.mmc.password}"/>
         <property name="driverClass" value="${jdbc.mmc.dirverclass}"/>
     </bean>
-    <!--事物配置-->
+
+
+    <!-- 定义事务管理器（声明式的事务） -->
     <bean id="transctionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 
-    <bean
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="select*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
 
-
+    <aop:config>
+        <aop:pointcut id="interceptorPointCuts" expression="execution(* *..service*..*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="interceptorPointCuts"/>
+    </aop:config>
 </beans>
