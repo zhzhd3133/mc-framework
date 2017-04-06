@@ -21,12 +21,26 @@
         <property name="driverClass" value="${jdbc.mmc.dirverclass}"/>
     </bean>
 
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configuration" value="classpath*:conf/mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath*:conf/mybatis/*Mapper.xml"/>
+        <property name="typeAliasesPackage" value="com.zzd.mmc.**.bean"/>
+    </bean>
+
+    <bean id="" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.zzd.mmc.**.dao"/>
+        <property name="sqlSessionFactoryBeanName" ref="sqlSessionFactory"/>
+    </bean>
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>
 
     <!-- 定义事务管理器（声明式的事务） -->
     <bean id="transctionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-
 
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
