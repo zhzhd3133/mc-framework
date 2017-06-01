@@ -4,14 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * Created by master-pc on 2017/3/28.
+ * Created by zzd on 2017/3/28.
  */
 @Controller
-public class Login {
+public class LoginSystem {
     /**
      * 访问系统首页
      * @return
@@ -19,13 +16,13 @@ public class Login {
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String login(){
         System.out.println("你哈哦");
-        return "index";
+        //插入表中
+        return "login";
     }
 
     @RequestMapping("add")
-    public Map<String,String> add(String code){
+    public String add(String userCode,String userPasswd){
 
-        //数据库访问
-        return new HashMap();
+        return "index";
     }
 }
