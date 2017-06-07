@@ -4,21 +4,23 @@
 <mapper namespace="com.zzd.mmc.core.dao.IUserDao">
 
     <!-- 实体属性与表字段对应 -->
-    <resultMap id="enumDicEntityMap" type="EnumDicEntity">
-
+    <resultMap id="userBeanMap" type="UserBean">
+        <result property="userName" column="user_name"/>
+        <result property="userCode" column="user_code"/>
+        <result property="userId" column="user_id"/>
     </resultMap>
 
-    <select id="insertUser"  parameterType="UserBean">
-
+    <select id="insertUser"  parameterType="UserBean" resultMap="userBeanMap">
+        SELECT * FROM SYS_USER
     </select>
 
     <insert id="insertUser" parameterType="UserBean">
-
+        insert into sys_user (user_name,user_code,user_id)
+        values (#{userName},#{userCode},#{userId})
     </insert>
 
-    <delete id="deleteEnumsObjByObj" parameterType="EnumDicBean">
-        delete from
-        ${SCHEMA_BASE}.BASE_ENUM_DIC where PK_ID=#{pkId}
+    <delete id="deleteUser" parameterType="string">
+        DELETE FROM sys_user where user_id = #{userId}
     </delete>
 
 </mapper>
