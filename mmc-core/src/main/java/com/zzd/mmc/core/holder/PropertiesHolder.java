@@ -8,16 +8,21 @@ import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import java.util.*;
 
 /**
- * Created by master-pc on 2017/4/5.
+ * 针对spring properties 读取的扩展
+ * 创建 2017/4/5.
+ * @author  zzd
+ * @see PropertyPlaceholderConfigurer
+ *
+ *
  */
 public class PropertiesHolder extends PropertyPlaceholderConfigurer {
-     Logger log = LoggerFactory.getLogger(PropertiesHolder.class);
+    Logger log = LoggerFactory.getLogger(PropertiesHolder.class);
     private static  Properties appProperties;
     @Override
     protected void processProperties(ConfigurableListableBeanFactory beanFactoryToProcess, Properties props) throws BeansException {
         super.processProperties(beanFactoryToProcess, props);
         Set<Map.Entry<Object,Object>> set = props.entrySet();
-        log.info("Properties ::: 读取配置信息如下（KEY == VALUE）"  );
+        log.info(":::::::::::::::::::::::::::Properties -->>> 读取配置信息如下 ::::::::::::::::::::::::::::"  );
         Iterator<Map.Entry<Object, Object>> it = set.iterator();
         while(it.hasNext()) {
             Map.Entry<Object, Object> enter = it.next();

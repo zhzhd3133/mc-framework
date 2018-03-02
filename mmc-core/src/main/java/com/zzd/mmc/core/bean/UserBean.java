@@ -52,7 +52,7 @@ public class UserBean {
 
     @Override
     public String toString() {
-        return "UserBean{" +
+        return "用户信息{" +
                 "userId='" + userId + '\'' +
                 ", userName='" + userName + '\'' +
                 ", userCode='" + userCode + '\'' +

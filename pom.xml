@@ -10,8 +10,8 @@
     <version>1.0.0-RELEASE</version>
 
     <modules>
-        <module>mmc-web</module>
         <module>mmc-core</module>
+        <module>mmc-web</module>
     </modules>
 
     <properties>
@@ -43,9 +43,21 @@
         <!--J2EE-->
         <servlet-api.version>2.5</servlet-api.version>
         <jsp.version>2.1</jsp.version>
-
+        <war-name.version></war-name.version>
         <!--plugin compiler 版本-->
         <compiler-plugin.version>3.1</compiler-plugin.version>
+        <resources-plugin.version>2.6</resources-plugin.version>
+        <war-plugin.version>2.3</war-plugin.version>
+        <surefire-plugin.version>2.18</surefire-plugin.version>
+
+        <!--运行容器插件-->
+        <!--tomcat7-->
+        <tomcat7-plugin.version>2.2</tomcat7-plugin.version>
+        <tomcat6-plugin.version>2.0</tomcat6-plugin.version>
+
+        <tomcat-port.version>8080</tomcat-port.version>
+        <tomcat-url-encoding.version>UTF-8</tomcat-url-encoding.version>
+
         <!--::::::::::::::::::::项目配置:::::::::::::::::::::::::-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jdk.version>1.7</jdk.version>
@@ -55,13 +67,13 @@
         <dependencies>
             <!--保证所有的Spring依赖（不管直接还是传递依赖）使用相同的版本
                 再需要指定<version>属性 -->
-           <!-- <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-framework-bom</artifactId>
-                <version>${spring.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>-->
+            <!-- <dependency>
+                 <groupId>org.springframework</groupId>
+                 <artifactId>spring-framework-bom</artifactId>
+                 <version>${spring.version}</version>
+                 <type>pom</type>
+                 <scope>import</scope>
+             </dependency>-->
 
             <!--基础框架 spring core-->
             <dependency>
@@ -266,7 +278,9 @@
 
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
+            <!--  maven complier编译插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -276,6 +290,40 @@
                     <target>${jdk.version}</target>
                     <showWarnings>true</showWarnings>
                     <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <!-- 项目resource 插件 -->
+            <!--目前了解如果改插件不设置的话，对应的java/main/resource 对应的文件不会打包到jar中-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${resources-plugin.version}</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <!-- war 打包插件, 设定war包名称不带版本号 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${war-plugin.version}</version>
+                <configuration>
+                    <warName>${war-name.version}</warName>
+                </configuration>
+            </plugin>
+
+            <!--tomcat7 插件-->
+            <!--https://tomcat.apache.org/maven-plugin-2.0/tomcat7-maven-plugin/run-mojo.html-->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>${tomcat7-plugin.version}</version>
+                <configuration>
+                    <port>${tomcat-port.version}</port>
+                    <charset>${project.build.sourceEncoding}</charset>
+                    <uriEncoding>${tomcat-url-encoding.version}</uriEncoding>
+                    <server>tomcat7</server>
                 </configuration>
             </plugin>
         </plugins>

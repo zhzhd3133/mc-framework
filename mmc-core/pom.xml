@@ -9,7 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>mmc-core</artifactId>
+    <packaging>jar</packaging>
     <version>${mmc-core.version}</version>
+    <name>mmc-core 核心业务</name>
     <description>系统核心业务模块</description>
 
     <dependencies>
@@ -70,23 +72,27 @@
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
         </dependency>
-       <!-- <dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-        </dependency>-->
+        </dependency>
+        <!-- <dependency>
+             <groupId>org.slf4j</groupId>
+             <artifactId>slf4j-api</artifactId>
+         </dependency>-->
 
         <!--与log4j集成-->
-       <!-- <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-        </dependency>
-       <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-        </dependency>-->
+        <!-- <dependency>
+             <groupId>org.slf4j</groupId>
+             <artifactId>slf4j-log4j12</artifactId>
+         </dependency>
+        <dependency>
+             <groupId>log4j</groupId>
+             <artifactId>log4j</artifactId>
+         </dependency>-->
 
 
-       <dependency>
+        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
         </dependency>
@@ -126,26 +132,26 @@
             <artifactId>mybatis-spring</artifactId>
         </dependency>
 
-      <!--  <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations-java5</artifactId>
-            <version>RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations-java5</artifactId>
-            <version>RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations-java5</artifactId>
-            <version>RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations-java5</artifactId>
-            <version>RELEASE</version>
-        </dependency>-->
+        <!--  <dependency>
+              <groupId>org.jetbrains</groupId>
+              <artifactId>annotations-java5</artifactId>
+              <version>RELEASE</version>
+          </dependency>
+          <dependency>
+              <groupId>org.jetbrains</groupId>
+              <artifactId>annotations-java5</artifactId>
+              <version>RELEASE</version>
+          </dependency>
+          <dependency>
+              <groupId>org.jetbrains</groupId>
+              <artifactId>annotations-java5</artifactId>
+              <version>RELEASE</version>
+          </dependency>
+          <dependency>
+              <groupId>org.jetbrains</groupId>
+              <artifactId>annotations-java5</artifactId>
+              <version>RELEASE</version>
+          </dependency>-->
 
     </dependencies>
 

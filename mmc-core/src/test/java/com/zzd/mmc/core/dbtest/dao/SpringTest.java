@@ -1,5 +1,6 @@
 package com.zzd.mmc.core.dbtest.dao;
 
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
@@ -11,7 +12,7 @@ import org.springframework.context.ApplicationContext;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath*:conf/spring/applicationContext-*.xml")
-public class SpringTest extends AbstractJUnit4SpringContextTests {
+public abstract class SpringTest extends AbstractJUnit4SpringContextTests {
 
     protected <T> T getBean(Class<T> type){
         return applicationContext.getBean(type);
@@ -23,5 +24,5 @@ public class SpringTest extends AbstractJUnit4SpringContextTests {
     public ApplicationContext getContext(){
         return applicationContext;
     }
-
 }
+
